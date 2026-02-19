@@ -30,7 +30,7 @@ h1 {
   font-size: 3rem;
   letter-spacing: 2px;
   color: #ff1a1a;
-  text-shadow: 0 0 4px #ff1a1a, 0 0 2px #ff4d4d; /* reduced glow for readability */
+  text-shadow: 0 0 0px #ff1a1a, 0 0 0px #ff4d4d; /* reduced glow for readability */
 }
 
 /* Live indicator */
