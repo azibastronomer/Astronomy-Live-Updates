@@ -14,10 +14,14 @@
   <!-- Starfield background -->
   <canvas id="starfield"></canvas>
 
-  <header>
-    <h1>Astronomy Updates Live</h1>
-    <button id="refreshBtn">Fetch Now</button>
-  </header>
+ <header>
+  <h1>Astronomy Updates Live</h1>
+  <div id="liveIndicator">
+    <span class="dot"></span>
+    Fetching Live Updates (they'll appear below once released by NASA)
+  </div>
+  <button id="refreshBtn">Fetch Now</button>
+</header>
 
   <main id="updates"></main>
 
