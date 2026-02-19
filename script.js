@@ -1,6 +1,6 @@
 const updatesContainer = document.getElementById('updates');
 const refreshBtn = document.getElementById('refreshBtn');
-const API_KEY = 'YOUR_REAL_NASA_KEY'; // 🔑 Replace with your real key
+const API_KEY = 'kwjrOFwlj2CO0DqFapKcrlO31vg43KqgOPGfcOKr'; // 🔑 Replace with your real key
 const API_URL = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`;
 
 let latestDate = null;
@@ -100,3 +100,4 @@ function animateStars() {
   requestAnimationFrame(animateStars);
 }
 animateStars();
+
