@@ -30,7 +30,7 @@ h1 {
   font-size: 3rem;
   letter-spacing: 2px;
   color: #ff1a1a;
-  text-shadow: none;
+  text-shadow: 0 0 4px #ff1a1a, 0 0 8px #ff4d4d;
 }
 
 /* Live indicator */
