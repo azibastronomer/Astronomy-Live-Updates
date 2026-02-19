@@ -5,44 +5,54 @@ const API_URL = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`;
 
 let latestDate = null;
 
+// Get current loaded timestamp
 function getLoadedDate() {
   return new Date().toLocaleString();
 }
 
+// Create update HTML safelykwjrOFwlj2CO0DqFapKcrlO31vg43KqgOPGfcOKr
 function createUpdate(data) {
   let mediaHtml = '';
-  if (data.media_type === 'image') {
-    mediaHtml = `<img src="${data.url}" alt="${data.title}">`;
-  } else if (data.media_type === 'video') {
+
+  // Handle image or video
+  if (data.media_type === 'image' && data.url) {
+    mediaHtml = `<img src="${data.url}" alt="${data.title || 'NASA APOD'}">`;
+  } else if (data.media_type === 'video' && data.url) {
     mediaHtml = `<iframe src="${data.url}" frameborder="0" allowfullscreen style="width:100%;height:400px;"></iframe>`;
+  } else {
+    mediaHtml = `<p>Media unavailable</p>`;
   }
 
   const updateDiv = document.createElement('div');
   updateDiv.className = 'update';
   updateDiv.innerHTML = `
-    <h2>${data.title}</h2>
-    <p>${data.date}</p>
+    <h2>${data.title || 'Untitled'}</h2>
+    <p>${data.date || 'Unknown date'}</p>
     ${mediaHtml}
-    <p>${data.explanation}</p>
+    <p>${data.explanation || 'No description available.'}</p>
     <p class="loaded-date">Loaded on: ${getLoadedDate()}</p>
   `;
 
   return updateDiv;
 }
 
+// Fetch NASA APOD update
 async function fetchUpdate() {
   try {
     const res = await fetch(API_URL);
     const data = await res.json();
 
+    // API error handling
     if (!data || data.code) {
-      console.error('API error:', data.msg || data);
+      console.error('NASA API error:', data.msg || data);
       return;
     }
 
-    if (data.date === latestDate) return; // skip duplicates
+    // Skip duplicates
+    if (data.date === latestDate) return;
     latestDate = data.date;
 
+    // Add new update
     const newUpdate = createUpdate(data);
     updatesContainer.prepend(newUpdate);
 
@@ -51,9 +61,10 @@ async function fetchUpdate() {
   }
 }
 
-// Auto fetch every 5 minutes
+// Auto fetch every 5 minutes (300,000 ms)
 setInterval(fetchUpdate, 5 * 60 * 1000);
 
+// Manual fetch button
 refreshBtn.addEventListener('click', fetchUpdate);
 
 // Initial fetch
@@ -100,4 +111,3 @@ function animateStars() {
   requestAnimationFrame(animateStars);
 }
 animateStars();
-
