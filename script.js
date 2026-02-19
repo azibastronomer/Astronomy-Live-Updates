@@ -65,7 +65,7 @@ async function fetchUpdate() {
 setInterval(fetchUpdate, 5 * 60 * 1000);
 
 // Manual fetch button
-refreshBtn.addEventListener('click', fetchUpdate);
+//refreshBtn.addEventListener('click', fetchUpdate);
 
 // Initial fetch
 fetchUpdate();
@@ -111,3 +111,4 @@ function animateStars() {
   requestAnimationFrame(animateStars);
 }
 animateStars();
+
