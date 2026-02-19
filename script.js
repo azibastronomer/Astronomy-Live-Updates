@@ -64,8 +64,6 @@ async function fetchUpdate() {
 // Auto fetch every 5 minutes (300,000 ms)
 setInterval(fetchUpdate, 5 * 60 * 1000);
 
-// Manual fetch button
-//refreshBtn.addEventListener('click', fetchUpdate);
 
 // Initial fetch
 fetchUpdate();
@@ -111,4 +109,5 @@ function animateStars() {
   requestAnimationFrame(animateStars);
 }
 animateStars();
+
 
